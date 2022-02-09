@@ -79,15 +79,18 @@ let basket = {
 		document.querySelectorAll('#basket>div.data').forEach(function (item) {
 			if (item.querySelector('input[type="checkbox"]').checked) {
 				checkCnt = item.querySelector('div.num input[name="p_num' + item.dataset.id + '"]');
-			console.log(checkCnt);
-				
-				checkItem = item.querySelector('div.sum');
+				if (checkCnt) {
 
-				var strToNum = checkItem.textContent.replace(/,/g, '');
-				//var strToCnt = checkCnt.value;
+					//console.log(checkCnt);
 
-				cartTotal += parseInt(strToNum);
-				//cartCount += parseInt(strToCnt);
+					checkItem = item.querySelector('div.sum');
+
+					var strToNum = checkItem.textContent.replace(/,/g, '');
+					var strToCnt = checkCnt.value;
+
+					cartTotal += parseInt(strToNum);
+					cartCount += parseInt(strToCnt);
+				}
 			}
 		})
 		this.cartTotal = cartTotal;
@@ -99,12 +102,29 @@ let basket = {
 
 	changePNum: function (pos) {
 		var currentElem = event.target;
+		var val = 1; // 변경수량.
 		var currentQty = currentElem.parentNode.parentNode.childNodes[1].value;
 		var currentPrice = currentElem.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].value;
 		if (currentElem.classList[2] == 'down')
 			val = currentQty == 1 ? 0 : (val * -1);
 		// 수량변경.
 		var calQty = parseInt(currentQty) + val;
+
+		// ajax call.
+		fetch('../cartUpdate', {
+				method: 'post',
+				headers: {
+					'Content-type': 'application/json;charset=utf-8'
+				},
+				body: JSON.stringify({
+					no: pos,
+					qty: calQty
+				})
+			})
+			.then(response => response.text())
+			.then(result => console.log(result))
+			.catch(err => console.log(err));
+
 		currentElem.parentNode.parentNode.childNodes[1].value = calQty;
 		// 수량 * 금액 => 재계산.
 		var calAmount = calQty * currentPrice;

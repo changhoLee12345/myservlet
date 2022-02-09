@@ -3,6 +3,7 @@ package com.yedam.myserver.cart.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class CartController {
 
 //	장바구니 수량 변경
 	@RequestMapping("/cartUpdate")
-	public int cartUpdate(CartVO vo) {
+	public int cartUpdate(@RequestBody CartVO vo) {
 		return mapper.merge(vo);
 	}
 
