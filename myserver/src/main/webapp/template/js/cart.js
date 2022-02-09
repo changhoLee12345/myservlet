@@ -46,7 +46,11 @@ let basket = {
 			rowDiv.querySelector('div.num input').value = result[i].qty;
 			rowDiv.querySelector('div.sum').textContent = (result[i].qty * result[i].price).formatNumber();
 			// rowDiv.querySelector('div.basketcmd>a').href = 'javascript:void(0)';
-			// rowDiv.querySelector('div.basketcmd>a').onclick = this.clickFnc;
+			rowDiv.querySelector('div.num>div.updown>input:nth-of-type(1)').setAttribute('id', 'p_num' + result[i].no);
+			rowDiv.querySelector('div.num>div.updown>input:nth-of-type(1)').setAttribute('name', 'p_num' + result[i].no);
+			rowDiv.querySelector('div.num>div.updown>input:nth-of-type(1)').setAttribute('onkeyup', 'javascript:basket.changePNum(' + result[i].no + ')');
+			rowDiv.querySelector('div.num>div.updown>span:nth-of-type(1)').setAttribute('onclick', 'javascript:basket.changePNum(' + result[i].no + ')');
+			rowDiv.querySelector('div.num>div.updown>span:nth-of-type(2)').setAttribute('onclick', 'javascript:basket.changePNum(' + result[i].no + ')');
 			basket.appendChild(rowDiv);
 			this.reCalc();
 		}
@@ -54,8 +58,7 @@ let basket = {
 
 	delItem: function (e) {
 		console.log('delItem:', e);
-		let no = "_________";
-		no = e.target.parentNode.parentNode.parentNode.dataset.id;
+		let no = e.target.parentNode.parentNode.parentNode.dataset.id;
 		let url = "../cartDelete?no=" + no;
 		console.log(url);
 		fetch(url)
@@ -75,14 +78,16 @@ let basket = {
 		var cartCount = 0;
 		document.querySelectorAll('#basket>div.data').forEach(function (item) {
 			if (item.querySelector('input[type="checkbox"]').checked) {
-				checkCnt = item.querySelector('div.num input[name="p_num1"]');
+				checkCnt = item.querySelector('div.num input[name="p_num' + item.dataset.id + '"]');
+			console.log(checkCnt);
+				
 				checkItem = item.querySelector('div.sum');
 
 				var strToNum = checkItem.textContent.replace(/,/g, '');
-				var strToCnt = checkCnt.value;
+				//var strToCnt = checkCnt.value;
 
 				cartTotal += parseInt(strToNum);
-				cartCount += parseInt(strToCnt);
+				//cartCount += parseInt(strToCnt);
 			}
 		})
 		this.cartTotal = cartTotal;
@@ -92,7 +97,23 @@ let basket = {
 
 	},
 
-	changePNum: function (val) {
+	changePNum: function (pos) {
+		var currentElem = event.target;
+		var currentQty = currentElem.parentNode.parentNode.childNodes[1].value;
+		var currentPrice = currentElem.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].value;
+		if (currentElem.classList[2] == 'down')
+			val = currentQty == 1 ? 0 : (val * -1);
+		// 수량변경.
+		var calQty = parseInt(currentQty) + val;
+		currentElem.parentNode.parentNode.childNodes[1].value = calQty;
+		// 수량 * 금액 => 재계산.
+		var calAmount = calQty * currentPrice;
+		currentElem.parentNode.parentNode.parentNode.parentNode.childNodes[5].textContent = (calAmount).formatNumber();
+
+		this.reCalc();
+	},
+
+	changePNum1: function (val) {
 		var currentElem = event.target;
 		var currentQty = currentElem.parentNode.parentNode.childNodes[1].value;
 		var currentPrice = currentElem.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].value;
