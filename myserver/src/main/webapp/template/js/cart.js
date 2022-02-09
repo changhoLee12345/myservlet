@@ -100,6 +100,10 @@ let basket = {
 
 	},
 
+	// Product code: jv46wdfhlgrbtbbl427aruauerknsdnuje
+	// Serial number: 261962
+	// Password: xs374ca
+
 	changePNum: function (pos) {
 		var currentElem = event.target;
 		var val = 1; // 변경수량.
@@ -109,28 +113,30 @@ let basket = {
 			val = currentQty == 1 ? 0 : (val * -1);
 		// 수량변경.
 		var calQty = parseInt(currentQty) + val;
+		if (val) {
 
-		// ajax call.
-		fetch('../cartUpdate', {
-				method: 'post',
-				headers: {
-					'Content-type': 'application/json;charset=utf-8'
-				},
-				body: JSON.stringify({
-					no: pos,
-					qty: calQty
+			// ajax call.
+			fetch('../cartUpdate', {
+					method: 'post',
+					headers: {
+						'Content-type': 'application/json;charset=utf-8'
+					},
+					body: JSON.stringify({
+						no: pos,
+						qty: calQty
+					})
 				})
-			})
-			.then(response => response.text())
-			.then(result => console.log(result))
-			.catch(err => console.log(err));
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(err => console.log(err));
 
-		currentElem.parentNode.parentNode.childNodes[1].value = calQty;
-		// 수량 * 금액 => 재계산.
-		var calAmount = calQty * currentPrice;
-		currentElem.parentNode.parentNode.parentNode.parentNode.childNodes[5].textContent = (calAmount).formatNumber();
+			currentElem.parentNode.parentNode.childNodes[1].value = calQty;
+			// 수량 * 금액 => 재계산.
+			var calAmount = calQty * currentPrice;
+			currentElem.parentNode.parentNode.parentNode.parentNode.childNodes[5].textContent = (calAmount).formatNumber();
 
-		this.reCalc();
+			this.reCalc();
+		}
 	},
 
 	changePNum1: function (val) {
