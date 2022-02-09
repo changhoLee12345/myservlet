@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.myserver.emp.mapper.EmployeeMapper">
+
+	<select id="findEmployees" resultType="employee">
+		select employee_id, first_name, last_name, job_id, hire_date, department_id,
+			   email, salary, manager_id, phone_number, commission_pct
+		from   emp
+		order by employee_id
+	</select>
+
+	<insert id="persist">
+		insert into emp (
+					employee_id,
+					first_name,
+					last_name,
+					email,
+					hire_date,
+					job_id
+		) values (
+					#{employee_id},
+					#{first_name},
+					#{last_name},
+					#{email},
+					#{hire_date},
+					#{job_id}
+		)
+	</insert>
+
+	<insert id="remove">
+		delete from emp
+		where employee_id = #{employee_id}
+	</insert>
+
+	<update id="merge">
+		update emp
+		set first_name = #{first_name},
+			last_name = #{last_name},
+			email = #{email},
+			phone_number = #{phone_number},
+			job_id = #{job_id},
+			salary = #{salary}
+		where employee_id = #{employee_id}
+	</update>
+
+	<select id="findJobs" resultType="jobs">
+		select job_id, job_title
+		from jobs
+		order by job_id
+	</select>
+
+	<select id="findDepartments" resultType="departments">
+		select a.department_id, a.department_name
+		from departments a
+		order by a.department_id
+	</select>
+
+	<select id="selectEmp" resultType="employee" parameterType="employee">
+		select *
+		from emp
+		where employee_id = #{id}
+	</select>
+
+
+	<select id="changeJobSal" parameterType="HashMap" statementType="CALLABLE">
+		{ call change_job_sal
+		  ( #{employee_id}, #{job_id}, #{department_name}, #{salary},
+		    #{ret_code, mode=OUT, jdbcType=VARCHAR, javaType=String},
+		    #{ret_msg, mode=OUT, jdbcType=VARCHAR, javaType=String}
+		  )
+		}
+	</select>
+
+	<resultMap type="hashmap" id="sample"></resultMap>
+	<select id="getDept" parameterType="HashMap" statementType="CALLABLE">
+		{ call get_dept_member(#{dept_id}, #{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=sample}) }
+	</select>
+
+</mapper>
