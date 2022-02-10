@@ -100,10 +100,6 @@ let basket = {
 
 	},
 
-	// Product code: jv46wdfhlgrbtbbl427aruauerknsdnuje
-	// Serial number: 261962
-	// Password: xs374ca
-
 	changePNum: function (pos) {
 		var currentElem = event.target;
 		var val = 1; // 변경수량.
