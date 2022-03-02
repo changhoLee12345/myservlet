@@ -53,7 +53,7 @@ App = {
       .then(function (instance) {
 
         // Execute adopt as a transaction by sending account
-        //return adoptionInstance.adopt(petId, {from: account});
+        return adoptionInstance.adopt(petId, {from: account});
       }).then(function (result) {
         return App.markAdopted();
         

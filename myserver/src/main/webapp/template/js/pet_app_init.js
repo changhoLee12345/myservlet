@@ -38,9 +38,7 @@ App = {
   },
 
   markAdopted: function () {
-    /*
-     * Replace me...
-     */
+
     fetch('../adoptSelect')
       .then(response => response.json())
       .then(function (adopters) {
@@ -48,7 +46,8 @@ App = {
         for (i = 0; i < adopters.length; i++) {
           $('.panel-pet').eq(adopters[i].id).find('button').text('Success').attr('disabled', true);
         }
-      }).catch(function (err) {
+      })
+      .catch(function (err) {
         console.log(err.message);
       });
 
@@ -70,7 +69,7 @@ App = {
         price: 9000
       })
     }).then(function (result) {
-	  console.log(result);
+      console.log(result);
       return App.markAdopted();
     }).catch(function (err) {
       console.log(err.message);
@@ -78,7 +77,7 @@ App = {
 
   }
 
-};
+}
 
 $(function () {
   $(window).load(function () {
