@@ -11,7 +11,9 @@
 		location="classpath:config/db.properties" />
 
 	<!-- DBCP class="org.apache.commons.dbcp2.BasicDataSource class="com.zaxxer.hikari.HikariDataSource"" -->
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${user}" />
@@ -19,16 +21,21 @@
 	</bean>
 
 	<!-- Mybatis -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
-		<property name="mapperLocations" value="classpath*:com/yedam/myserver/**/mapper/*-map.xml" />
+		<property name="configLocation"
+			value="classpath:config/mybatis-config.xml" />
+		<property name="mapperLocations"
+			value="classpath*:com/yedam/myserver/**/mapper/*-map.xml" />
 	</bean>
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 
-	<mybatis-spring:scan base-package="com.yedam.myserver.**.mapper" />
+	<mybatis-spring:scan
+		base-package="com.yedam.myserver.**.mapper" />
 
 </beans>
