@@ -23,6 +23,7 @@ public class JDBCTests {
 		long start = System.currentTimeMillis();
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "book_ex", "book_ex");
+			log.info("start");
 			log.info(conn);
 
 		} catch (SQLException e) {
