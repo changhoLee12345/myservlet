@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <h1>Hello world!</h1>
+    <h1>Hello world!(index)</h1>
 
     <div class="main">
         <div> <a href="template/cart.html">cart</a> </div>
