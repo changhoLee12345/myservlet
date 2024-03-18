@@ -1,4 +1,5 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +35,7 @@
           </div>
           <div class="panel-body">
             <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;"
-              src="./images/scottish-terrier.jpeg" data-holder-rendered="true">
+              src="./template/images/scottish-terrier.jpeg" data-holder-rendered="true">
             <br /><br />
             <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br />
             <strong>Age</strong>: <span class="pet-age">3</span><br />
@@ -51,7 +52,7 @@
           </div>
           <div class="panel-body">
             <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;"
-              src="./images/french-bulldog.jpeg" data-holder-rendered="true">
+              src="./template/images/french-bulldog.jpeg" data-holder-rendered="true">
             <br /><br />
             <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br />
             <strong>Age</strong>: <span class="pet-age">3</span><br />
@@ -68,7 +69,7 @@
           </div>
           <div class="panel-body">
             <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;"
-              src="./images/boxer.jpeg" data-holder-rendered="true">
+              src="./template/images/boxer.jpeg" data-holder-rendered="true">
             <br /><br />
             <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br />
             <strong>Age</strong>: <span class="pet-age">3</span><br />
@@ -89,7 +90,7 @@
         </div>
         <div class="panel-body">
           <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;"
-            src="./images/golden-retriever.jpeg" data-holder-rendered="true">
+            src="./template/images/golden-retriever.jpeg" data-holder-rendered="true">
           <br /><br />
           <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br />
           <strong>Age</strong>: <span class="pet-age">3</span><br />
@@ -101,7 +102,7 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="./js/pet_app.js"></script>
+  <script src="./template/js/pet_app.js"></script>
 </body>
 
 </html>
