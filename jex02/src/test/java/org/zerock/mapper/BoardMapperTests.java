@@ -20,6 +20,10 @@ public class BoardMapperTests {
 	private BoardMapper mapper;
 
 	@Test
+	public void insertBoard() {
+		
+	}
+	
 	public void testGetList() {
 		mapper.getList().forEach(board -> log.info(board));
 	}
