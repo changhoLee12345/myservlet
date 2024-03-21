@@ -18,12 +18,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		System.out.println(request.getRequestURL()); // http://localhost:8080/controller/sample/admin
-		System.out.println(request.getRequestURI());
-		System.out.println(request.getServletContext().getContextPath());
-		System.out.println(request.getServerName());
-		System.out.println(request.getServletPath());
 
 		log.warn("Login Success");
 
