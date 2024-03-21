@@ -2,5 +2,5 @@
 /build/
 /Dev/
 /target/
-.classpath
-.project
+/.classpath
+/.project
