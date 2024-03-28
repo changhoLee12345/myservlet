@@ -73,6 +73,7 @@ public class MemberTests {
 
 	}
 
+//	@Test
 	public void testInsertMembers() {
 		String sql = "insert into tbl_member(userid, userpw, username) values(?,?,?)";
 		Connection conn = null;
