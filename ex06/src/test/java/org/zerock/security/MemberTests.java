@@ -28,6 +28,12 @@ public class MemberTests {
 	private DataSource ds;
 
 	@Test
+	public void testPw() {
+		System.out.println(pwencoder.encode("pw"));
+
+	}
+
+//	@Test
 	public void testInsertAuths() {
 		String sql = "insert into tbl_member_auth(userid, auth) values(?,?)";
 		Connection conn = null;
