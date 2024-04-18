@@ -29,7 +29,7 @@ public class MemberTests {
 
 	@Test
 	public void testPw() {
-		System.out.println(pwencoder.encode("pw"));
+		System.out.println("=>" + pwencoder.encode("pw") + "<=");
 
 	}
 
