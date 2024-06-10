@@ -33,7 +33,7 @@
 		<beans:property name="maxUploadSizePerFile"
 			value="2097152"></beans:property>
 		<beans:property name="uploadTempDir"
-			value="file:/c:/upload/tmp"></beans:property>
+			value="file:/home/linuxie/upload/tmp"></beans:property>
 		<beans:property name="maxInMemorySize" value="10485756"></beans:property>
 	</beans:bean>
 
